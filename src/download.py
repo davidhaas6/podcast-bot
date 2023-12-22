@@ -11,7 +11,7 @@ import time
 import tqdm
 
 START_TIME = datetime.now().strftime("%m%d%Y_%H%M")
-DATA_DIR = f'C:\\Users\\David\\Documents\\Projects\\podcast-bot\\data\\{START_TIME}\\'
+DATA_DIR = f'/mnt/c/Users/David/Documents/Projects/podcast-bot/data/{START_TIME}/'
 
 
 def extract_transcript(html_content):
@@ -67,7 +67,8 @@ if response.status_code == 200:
         response = requests.get(link)
         if response.status_code != 200:
             print('couldnt download',link)
-            time.sleep(3)
+            print('response:', response.status_code, response.reason)
+            time.sleep(5)
             continue
 
         transcript = extract_transcript(response.text)
